@@ -1,0 +1,16 @@
+kind: "CDN"
+version: "1"
+metadata:
+  envTypes: ["dev", "stage", "prod"]
+data:
+  requestTransformations:
+    removeMarketingParams: true
+    rules:
+      - name: set-header-rule
+        when:
+          reqProperty: path
+          like: /set-header
+        actions:
+          - type: set
+            reqHeader: x-some-header
+            value: some value
